@@ -1,6 +1,9 @@
 # agentic-tools
 A python package that lets you setup agents with tools very easy 
 
+<img src="https://raw.githubusercontent.com/AxelGard/agentic-tools/master/docs/icon.png" alt="drawing" style="width:300px;"/>
+
+
 All you need is to add a docorator do the function that should be made accessable to the LLM. 
 
 ```python
