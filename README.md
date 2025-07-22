@@ -1,8 +1,19 @@
 # agentic-tools
 A python package that lets you setup agents with tools very easy 
 
-
 All you need is to add a docorator do the function that should be made accessable to the LLM. 
+
+```python
+from agentic_tools import ai_tool
+
+def my_function_that_an_llm_can_not_use():
+    pass 
+
+@ai_tool
+def my_function_that_an_llm_can_use():
+    pass
+
+```
 
 Be awere that this will eat more input tokens, since you are adding context of the functions.
 
@@ -13,6 +24,20 @@ pip install agentic-tools
 ```
 
 Agentic tools needs a [LangChain](https://python.langchain.com/docs/integrations/chat/) object chat model.
+
+
+### build 
+
+```bash 
+git clone git@github.com:AxelGard/agentic-tools.git
+cd agentic-tools
+python3 -m venv env 
+source ./env/bin/activate
+pip install -e .
+# or 
+# pip install -e .[dev] 
+# if you want dev depenacies 
+```
 
 
 ## DEMO 
