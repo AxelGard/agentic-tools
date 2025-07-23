@@ -4,7 +4,7 @@ setup(
     name='agentic-tools', 
     version='0.1.0',
     author='Axel Gard',
-    author_email='your.email@example.com',
+    author_email='axel.gard@tutanota.com',
     description='A toolset for agentic workflows',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -24,6 +24,7 @@ setup(
         'dev': [
             'pytest',
             "black",
+            "build",
         ]
     },
     include_package_data=True,
