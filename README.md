@@ -9,16 +9,23 @@ All you need is to add a docorator do the function that should be made accessabl
 ```python
 from agentic_tools import ai_tool
 
-def my_function_that_an_llm_can_not_use():
+def llm_can_not_use():
     pass 
 
 @ai_tool
-def my_function_that_an_llm_can_use():
+def llm_can_use():
     pass
 
 ```
 
 Be awere that this will eat more input tokens, since you are adding context of the functions.
+
+
+## Context that gets added
+
+- [x] Function signarure, icludeing, arguments and type hints
+- [x] Docstring
+
 
 ## install 
 
@@ -109,9 +116,42 @@ llm = ChatOllama(model="llama3.1", temperature=0)
 agent = Agent(llm_chat_model=llm)
 
 query = "what was apples stock price a 5 days ago?"
-print(f"{agent.query(question=query)}\n")
+print(f"{agent.query(question=query)}\n") 
+# The stock price of AAPL was $210.16 5d ago
 
 query="who are you?"
-print(f"{agent.query(question=query)}\n")
+print(f"{agent.query(question=query)}\n") 
+# I'm an AI assistant. I don't have a personal identity or emotions, but I can provide information and help with tasks to the best of my abilities. How can I assist you today?
+
+```
+
+
+```python
+from langchain_ollama.chat_models import ChatOllama
+from agentic_tools import ai_tool, Agent
+
+llm = ChatOllama(model="llama3.1", temperature=0)
+agent = Agent(llm_chat_model=llm)
+
+@ai_tool
+def execute_python_code(python_code_as_string:str) -> str:
+    """ 
+    This tool that lets you execute python code and returns the result as a string. 
+    So if you want the result of a expression remeber to print it.
+    If you need more then one line of code then you need to seperate with `;`
+    So if you want to use this tool just call it with the python code and NOTHING ELSE. 
+    When you get a result that you are satesfied with then you should respond with that result"""
+    print(python_code_as_string) 
+    try: 
+        return str(exec(python_code_as_string))
+    except Exception as e: 
+        return str(e)
+
+
+query="write the needed code that you need to calculate 2 to the power of 88"
+r = "None" 
+while True:
+    r = agent.query(question=f"Question:{query}; result:{r}")
+    print(r)
 
 ```

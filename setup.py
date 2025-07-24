@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='agentic-tools', 
-    version='0.1.0',
+    version='0.2.0',
     author='Axel Gard',
     author_email='axel.gard@tutanota.com',
     description='A toolset for agentic workflows',
