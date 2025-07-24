@@ -125,33 +125,3 @@ print(f"{agent.query(question=query)}\n")
 
 ```
 
-
-```python
-from langchain_ollama.chat_models import ChatOllama
-from agentic_tools import ai_tool, Agent
-
-llm = ChatOllama(model="llama3.1", temperature=0)
-agent = Agent(llm_chat_model=llm)
-
-@ai_tool
-def execute_python_code(python_code_as_string:str) -> str:
-    """ 
-    This tool that lets you execute python code and returns the result as a string. 
-    So if you want the result of a expression remeber to print it.
-    If you need more then one line of code then you need to seperate with `;`
-    So if you want to use this tool just call it with the python code and NOTHING ELSE. 
-    When you get a result that you are satesfied with then you should respond with that result"""
-    print(python_code_as_string) 
-    try: 
-        return str(exec(python_code_as_string))
-    except Exception as e: 
-        return str(e)
-
-
-query="write the needed code that you need to calculate 2 to the power of 88"
-r = "None" 
-while True:
-    r = agent.query(question=f"Question:{query}; result:{r}")
-    print(r)
-
-```
